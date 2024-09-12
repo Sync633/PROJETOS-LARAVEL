@@ -25,9 +25,27 @@
                 <h2 class="text-xl text-indigo-700">Tarefas Cadastradas</h2>
                 <table class="mt-4 w-full table-auto">
                     <thead >
-                        
+                        <tr class="bg-indigo-300 text-sm">
+                            <th class="rounded-lg">id</th>
+                            <th class="rounded-lg">Description</th>
+                            <th class="rounded-lg">Date</th>
+                            <th class="rounded-lg">Action</th>
+                        </tr>
                     </thead>
-
+                    <tbody>
+                        @foreach($tasks as $task)
+                        <tr class="text-sm">
+                            <td class="rounded-lg bg-indigo-100 text-center text-sm font-bold">{{ $task->id }}</td>
+                            <td class="border border-gray-200 pl-1 pr-1">{{ $task->description }}</td>
+                            <td class="border border-gray-200 pl-1 pr-1">{{ Carbon\Carbon::parse($task->date)->format('d/m/Y') }}</td>
+                            <td class="border border-gray-200 pl-1 pr-1">
+                                <a href="/task/{{ $task->id }}">
+                                    <x-heroicon-s-trash class="w-5 text-red-500 hover:text-red-400" />
+                                </a> 
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </article>
         </section>
