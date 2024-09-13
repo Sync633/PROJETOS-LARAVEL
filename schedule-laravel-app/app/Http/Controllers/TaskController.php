@@ -29,4 +29,15 @@ class TaskController extends Controller
 
         return redirect('/task');
     }
+
+    public function edit($id){
+        $task = Task::findOrFail($id);
+        return view('task.edit', compact('task'));
+    }
+
+    public function update(Request $request, $id){
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+        return redirect('/task');
+    }
 }
