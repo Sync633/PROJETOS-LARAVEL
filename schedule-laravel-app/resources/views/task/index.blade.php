@@ -13,7 +13,7 @@
     <main class="flex justify-center">
         <section class="bg-slate-2 mt-4 w-3/4 p-4 shadow-lg shadow-indigo-200/50">
 
-            <h1 class="text-2xl text-indigo-800">Agenda de Tarefas</h1>
+            <h1 class="text-3xl text-indigo-800">Agenda de Tarefas</h1>
 
             <hr class="mb-2 mt-2">
 
@@ -22,26 +22,33 @@
             </div>
 
             <article>
-                <h2 class="text-xl text-indigo-700">Tarefas Cadastradas</h2>
+                <h2 class="text-2xl text-indigo-700">Tarefas Cadastradas</h2>
                 <table class="mt-4 w-full table-auto">
                     <thead >
-                        <tr class="bg-indigo-300 text-sm">
-                            <th class="rounded-lg">id</th>
-                            <th class="rounded-lg">Description</th>
-                            <th class="rounded-lg">Date</th>
-                            <th class="rounded-lg">Action</th>
+                        <tr class="bg-indigo-300 text-md">
+                            <th class="rounded-l-md p-2 border-r-2">ID</th>
+                            <th class="p-2 border-r-2">Description</th>
+                            <th class="p-2 border-r-2">Date</th>
+                            <th class="rounded-r-md p-1">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($tasks as $task)
-                        <tr class="text-sm">
-                            <td class="rounded-lg bg-indigo-100 text-center text-sm font-bold">{{ $task->id }}</td>
-                            <td class="border border-gray-200 pl-1 pr-1">{{ $task->description }}</td>
-                            <td class="border border-gray-200 pl-1 pr-1">{{ Carbon\Carbon::parse($task->date)->format('d/m/Y') }}</td>
-                            <td class="border border-gray-200 pl-1 pr-1">
-                                <a href="/task/{{ $task->id }}">
-                                    <x-heroicon-s-trash class="w-5 text-red-500 hover:text-red-400" />
+                        <tr class="text-md">
+                            <td class="rounded-l-md bg-indigo-100 text-center text-sm font-bold">{{ $task->id }}</td>
+                            <td class="border border-gray-200 p-1">{{ $task->description }}</td>
+                            <td class="border border-gray-200 p-1">{{ Carbon\Carbon::parse($task->date)->format('d/m/Y') }}</td>
+                            <td class="rounded-r-md border border-gray-200 p-2 flex justify-center items-center">
+                                <a href="{{route('task.edit', $task->id)}}">
+                                    <x-lucide-edit class="w-5 ml-2 text-gray-700 hover:text-gray-500" />
                                 </a> 
+                                <a href="#" onclick="deleteTask( {{ $task->id }} )">
+                                    <x-heroicon-s-trash class="w-5 text-red-500 hover:text-red-400" />
+                                </a>
+                                <form class="d-none" id="form-destroy-{{$task->id}}" action="{{ route('task.destroy', $task->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -53,3 +60,11 @@
     
 </body>
 </html>
+
+<script>
+    function deleteTask(id){
+        if(confirm("Tem certeza que deseja EXCLUIR o registro?")){
+            document.getElementById('form-destroy-'+id).submit();
+        }
+    }
+</script>

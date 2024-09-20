@@ -12,7 +12,7 @@
     
     <main class="flex justify-center">
         <section class="bg-slate-2 mt-4 w-3/4 p-4 shadow-lg shadow-indigo-200/50">
-            <h1 class="text-2xl text-indigo-800">Nova Tarefa: Adicionar</h1>
+            <h1 class="text-2xl text-indigo-800 mb-4">Nova Tarefa: Adicionar</h1>
             <hr class="mb-2 mt-2">
                 <form action="/task/store" method="POST">
                     @csrf
@@ -25,8 +25,8 @@
                         <input type="date" name="date" id="date" class="rounded-md border border-indigo-600 p-2"> 
                     </div>
 
-                    <div class="mt-4 flex flex-col">
-                        <input type="submit" value="Salvar Tarefa">
+                    <div class="mt-4 flex justify-center">
+                        <input type="submit" value="Salvar Tarefa" class="rounded-md bg-indigo-500 p-1 w-60">
                     </div>
                 </form>
         </section>
