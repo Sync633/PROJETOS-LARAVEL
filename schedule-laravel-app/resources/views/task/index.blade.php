@@ -39,8 +39,8 @@
                             <td class="border border-gray-200 p-1">{{ $task->description }}</td>
                             <td class="border border-gray-200 p-1">{{ Carbon\Carbon::parse($task->date)->format('d/m/Y') }}</td>
                             <td class="rounded-r-md border border-gray-200 p-2 flex justify-center items-center">
-                                <a href="{{route('task.edit', $task->id)}}">
-                                    <x-lucide-edit class="w-5 ml-2 text-gray-700 hover:text-gray-500" />
+                                <a href="{{route('task.edit', $task->id)}}" class="mr-1">
+                                    <x-lucide-edit class="w-5 text-gray-700 hover:text-gray-500" />
                                 </a> 
                                 <a href="#" onclick="deleteTask( {{ $task->id }} )">
                                     <x-heroicon-s-trash class="w-5 text-red-500 hover:text-red-400" />

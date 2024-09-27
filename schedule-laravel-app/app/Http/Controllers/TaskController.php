@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -18,7 +19,18 @@ class TaskController extends Controller
     }
 
     public function store(Request $request){
-        $task = Task::create($request->all());
+        $rules = [
+            'description' => 'required|min:5',
+            'date' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()){
+            return redirect()->route('task.create')->withInput()->withErrors($validator);
+        }
+
+        Task::create($request->all());
 
         return redirect('/task');
     }
