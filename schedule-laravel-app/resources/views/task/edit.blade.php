@@ -14,13 +14,19 @@
                 @method('PUT')
 
                 <div class="mt-4 flex flex-col">
-                    <label for="description" class="text-indigo-500">Descrição da Tarefa</label>
+                    <label for="description" class="text-indigo-500">Descrição da Tarefa:</label>
                     <input type="text" name="description" id="description" class="rounded-md border border-indigo-600 p-2" value="{{ @old('description', $task->description) }}">
+                    @error('description')
+                    <p class="text-muted text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mt-4 flex flex-col">
                     <label for="date" class="text-indigo-500">Data Programada:</label>
                     <input type="date" name="date" id="date" class="rounded-md border border-indigo-600 p-2" value="{{ @old('date', $task->date) }}">
+                    @error('date')
+                    <p class="text-muted text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
                 
                 <div class="mt-4 flex justify-end">

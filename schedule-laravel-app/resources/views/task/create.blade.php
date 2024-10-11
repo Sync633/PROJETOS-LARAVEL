@@ -11,7 +11,7 @@
                 <form action="/task/store" method="POST">
                     @csrf
                     <div class="mt-4 flex flex-col">
-                        <label for="description" class="text-indigo-500">Descrição da Tarefa</label>
+                        <label for="description" class="text-indigo-500">Descrição da Tarefa:</label>
                         <input type="text" name="description" id="description" class="rounded-md border border-indigo-600 p-2" value="{{@old('description')}}">
                         @error('description')
                             <p class="text-muted text-red-400">{{ $message }}</p>

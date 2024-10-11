@@ -14,6 +14,8 @@
                 <a href="/task/create" class="rounded-md bg-indigo-500 p-2 text-indigo-50 shadow-md shadow-indigo-500/50 hover:bg-indigo-400">Adicionar Tarefa</a>
             </div>
 
+            @include('components.flashmessages')
+
             <article>
                 <h2 class="text-2xl text-indigo-700">Tarefas Cadastradas</h2>
                 <table class="mt-4 w-full table-auto">
@@ -62,4 +64,13 @@
             document.getElementById('form-destroy-'+id).submit();
         }
     }
+</script>
+
+<script>
+    const target = document.getElementById("alertDiv");
+    function hide(){
+        target.style.opacity = "0"
+        target.style.display = "none";
+    }
+    window.onload = setInterval(() => hide(), 5000)
 </script>
